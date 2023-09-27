@@ -13,4 +13,11 @@ public class FoodReviewController {
     public void exSideBar(){
         log.info("exSideBar.................");
     }
+
+    @GetMapping({"/","/list"})
+    public String list(){
+        log.info("list......................");
+
+        return "/foodreview/list";
+    }
 }
