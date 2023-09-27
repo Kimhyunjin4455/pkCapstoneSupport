@@ -21,4 +21,12 @@ public class FoodReview extends BaseEntity{
     @Column(length = 1500, nullable = false)
     private String content;
 
+    public void changeRestaurantName(String restaurantName){
+        this.restaurantName = restaurantName;
+    }
+
+    public void changeContent(String content){
+        this.content = content;
+    }
+
 }
