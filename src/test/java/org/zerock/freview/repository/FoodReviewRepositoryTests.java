@@ -33,7 +33,7 @@ public class FoodReviewRepositoryTests {
             foodReview.changeRestaurantName("변경할 식당명 작성....");
             foodReview.changeContent("변경할 리뷰 내용 작성....");
 
-            foodReviewRepository.save(foodReview);
+            foodReviewRepository.save(foodReview); //
         }
     }
 }
