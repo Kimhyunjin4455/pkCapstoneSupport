@@ -28,8 +28,16 @@ public class FoodReviewServiceTests {
 
         PageResultDTO<FoodReviewDTO, FoodReview> resultDTO = service.getList(pageRequestDTO);
 
+        System.out.println("PREV: " + resultDTO.isPrev());
+        System.out.println("NEXT: " + resultDTO.isNext());
+        System.out.println("TOTAL: " + resultDTO.getTotalPage());
+        System.out.println("===================================");
+
         for(FoodReviewDTO foodReviewDTO : resultDTO.getDtoList()){
             System.out.println(foodReviewDTO);
         }
+
+        System.out.println("===================================");
+        resultDTO.getPageList().forEach(i-> System.out.println(i));
     }
 }
