@@ -1,4 +1,4 @@
-package org.zerock.freview.controller;
+package org.zerock.freview.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

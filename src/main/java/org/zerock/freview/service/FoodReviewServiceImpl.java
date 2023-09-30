@@ -3,7 +3,7 @@ package org.zerock.freview.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import org.zerock.freview.controller.FoodReviewDTO;
+import org.zerock.freview.dto.FoodReviewDTO;
 import org.zerock.freview.entity.FoodReview;
 import org.zerock.freview.repository.FoodReviewRepository;
 

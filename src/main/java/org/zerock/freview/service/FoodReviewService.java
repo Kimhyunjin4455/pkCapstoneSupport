@@ -1,6 +1,6 @@
 package org.zerock.freview.service;
 
-import org.zerock.freview.controller.FoodReviewDTO;
+import org.zerock.freview.dto.FoodReviewDTO;
 import org.zerock.freview.entity.FoodReview;
 
 public interface FoodReviewService {
