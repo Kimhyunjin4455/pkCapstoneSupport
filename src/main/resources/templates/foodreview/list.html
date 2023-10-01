@@ -5,13 +5,43 @@
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4">여러분의 후기를 기다리고 있습니다.
-            <span>
-                <a th:href="@{/guestbook/register}">
-                    <button type="button" class="btn btn-outline-primary">REGISTER
-                    </button>
+        <h1 class="mt-4">여러분의 후기를 기다리고 있습니다.</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">등록번호</th>
+                <th scope="col">식당명</th>
+                <!--<th scope="col">리뷰내용</th>-->
+                <!--<th scope="col">썸네일</th>-->
+                <th scope="col">등록일자</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dto: ${result.dtoList}">
+                <th scope="row">[[${dto.fno}]]</th>
+                <td>[[${dto.restaurantName}]]</td>
+                <!--<td>[[${dto.content}]]</td>-->
+                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul class="pagination h-100 justify-content-center align-items-center">
+            <li class="page-item" th:if="${result.prev}">
+                <a class="page-link" th:href="@{/foodreview/list(page= ${result.start -1})}" tabindex="-1">이전 페이지</a>
+            </li>
+
+            <li th:class=" ' page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{/foodreview/list(page= ${page})}">
+                    [[${page}]]
                 </a>
-            </span>
-        </h1>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{/foodreview/list(page= ${result.end +1})}">다음 페이지</a>
+            </li>
+
+        </ul>
     </th:block>
 </th:block>
