@@ -1,9 +1,11 @@
 package org.zerock.freview.service;
 
+import org.springframework.stereotype.Service;
 import org.zerock.freview.dto.FoodReviewDTO;
 import org.zerock.freview.dto.PageRequestDTO;
 import org.zerock.freview.dto.PageResultDTO;
 import org.zerock.freview.entity.FoodReview;
+
 
 public interface FoodReviewService {
     Long register(FoodReviewDTO dto);

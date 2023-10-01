@@ -14,6 +14,7 @@ plugins {
 group = 'org.zerock'
 version = '0.0.1-SNAPSHOT'
 
+
 java {
 	sourceCompatibility = '17'
 }
@@ -64,11 +65,14 @@ sourceSets {
 	main.java.srcDir querydslDir
 }
 
-configurations {
-	querydsl.extendsFrom compileClasspath
-}
 
 compileQuerydsl{
 	options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	querydsl.extendsFrom compileClasspath
 }
 

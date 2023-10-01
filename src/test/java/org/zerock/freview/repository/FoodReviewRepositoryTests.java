@@ -9,16 +9,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.freview.entity.FoodReview;
+import org.zerock.freview.entity.FoodReviewImage;
 import org.zerock.freview.entity.QFoodReview;
 
+import java.util.Arrays;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.IntStream;
 
 @SpringBootTest
 public class FoodReviewRepositoryTests {
 
     @Autowired FoodReviewRepository foodReviewRepository;
+
+    @Autowired FoodReviewImageRepository imageRepository;
 
 //    @Test
 //    public void insertDummies(){
@@ -59,5 +66,40 @@ public class FoodReviewRepositoryTests {
 //        result.stream().forEach(foodReview -> {
 //            System.out.println(foodReview);
 //        });
+//    }
+
+    @Commit
+    @Transactional
+    @Test
+    public void insertFoods(){
+        IntStream.rangeClosed(1,5).forEach(i->{
+            FoodReview foodReview = FoodReview.builder()
+                    .restaurantName("BBQ...new" + i)
+                    .content("contentBBQ...new"+i).build();
+            System.out.println("----------------------------------------");
+            foodReviewRepository.save(foodReview);
+
+            int count = (int)(Math.random()*5)+1; // 1,2,3,4
+
+            for(int j=0; j<count; j++){
+                FoodReviewImage foodReviewImage = FoodReviewImage.builder()
+                        .uuid(UUID.randomUUID().toString())
+                        .foodReview(foodReview)
+                        .imgName("test" + j + ".jpg").build();
+
+                imageRepository.save(foodReviewImage);
+            }
+
+            System.out.println("=========================================");
+        });
+    }
+
+//    @Test
+//    public void testListPage(){
+//        PageRequest pageRequest = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "fno"));
+//        Page<Object[]> result = foodReviewRepository.getListPage(pageRequest);
+//        for (Object[] objects : result.getContent()){
+//            System.out.println(Arrays.toString(objects));
+//        }
 //    }
 }
