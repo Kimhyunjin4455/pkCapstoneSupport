@@ -91,7 +91,7 @@ public class UploadController {
 
         String folderPath = str.replace("//", File.separator);
 
-        //make folder
+        //폴더 생성
         File uploadPathFolder = new File(uploadPath, folderPath);
 
         if(uploadPathFolder.exists() == false) {
