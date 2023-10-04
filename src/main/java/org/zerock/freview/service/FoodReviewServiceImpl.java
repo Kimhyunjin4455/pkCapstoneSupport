@@ -11,8 +11,12 @@ import org.zerock.freview.dto.FoodReviewDTO;
 import org.zerock.freview.dto.PageRequestDTO;
 import org.zerock.freview.dto.PageResultDTO;
 import org.zerock.freview.entity.FoodReview;
+import org.zerock.freview.entity.FoodReviewImage;
+import org.zerock.freview.repository.FoodReviewImageRepository;
 import org.zerock.freview.repository.FoodReviewRepository;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -20,24 +24,30 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class FoodReviewServiceImpl implements FoodReviewService{
 
-    private final FoodReviewRepository repository; // 반드시 final 사용 필요
+    private final FoodReviewRepository foodReviewRepository; // 반드시 final 사용 필요
+
+    private final FoodReviewImageRepository imageRepository;
     @Override
-    public Long register(FoodReviewDTO dto) {
+    @Transactional
+    public Long register(FoodReviewDTO foodReviewDTO) {
 
-        log.info("DTO------------------");
-        log.info(dto);
+        Map<String, Object> entityMap = dtoToEntity(foodReviewDTO);
+        FoodReview foodReview = (FoodReview) entityMap.get("foodReview");
+        List<FoodReviewImage> foodReviewImageList = (List<FoodReviewImage>) entityMap.get("imgList");
 
-        FoodReview entity = dtoToEntity(dto);
-        log.info(entity);
+        foodReviewRepository.save(foodReview);
 
-        repository.save(entity);
-        return entity.getFno();
+        foodReviewImageList.forEach(foodReviewImage -> {
+            imageRepository.save(foodReviewImage);
+        });
+
+        return foodReview.getFno();
     }
 
     @Override
     public PageResultDTO<FoodReviewDTO, FoodReview> getList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("fno").descending());
-        Page<FoodReview> result = repository.findAll(pageable);
+        Page<FoodReview> result = foodReviewRepository.findAll(pageable);
         Function<FoodReview, FoodReviewDTO> fn = (entity -> entityToDTO(entity));
         return new PageResultDTO<>(result, fn);
     }
