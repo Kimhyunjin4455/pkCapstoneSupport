@@ -27,10 +27,15 @@ public class FoodReviewController {
         return "redirect:/guestbook/list";
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
         log.info("list..............." + pageRequestDTO);
         model.addAttribute("result", service.getList(pageRequestDTO));
+    }
+
+    @GetMapping("/register")
+    public void register(){
+
     }
 
 
