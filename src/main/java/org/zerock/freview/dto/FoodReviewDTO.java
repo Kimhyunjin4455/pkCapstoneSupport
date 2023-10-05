@@ -17,6 +17,7 @@ import java.util.List;
 public class FoodReviewDTO {
     private Long fno;
     private String restaurantName;
+
     private String content;
 
     @Builder.Default

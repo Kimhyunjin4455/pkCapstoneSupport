@@ -26,7 +26,7 @@ public class FoodReviewServiceTests {
     public void testList(){
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(3).build();
 
-        PageResultDTO<FoodReviewDTO, FoodReview> resultDTO = service.getList(pageRequestDTO);
+        PageResultDTO<FoodReviewDTO, Object[]> resultDTO = service.getList(pageRequestDTO);
 
         System.out.println("PREV: " + resultDTO.isPrev());
         System.out.println("NEXT: " + resultDTO.isNext());

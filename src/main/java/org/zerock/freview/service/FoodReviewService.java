@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public interface FoodReviewService {
     Long register(FoodReviewDTO dto);
 
-    PageResultDTO<FoodReviewDTO, FoodReview> getList(PageRequestDTO requestDTO);
+    PageResultDTO<FoodReviewDTO, Object[]> getList(PageRequestDTO requestDTO);
 
     default Map<String, Object> dtoToEntity(FoodReviewDTO foodReviewDTO){
         Map<String, Object> entityMap = new HashMap<>();
@@ -61,4 +61,26 @@ public interface FoodReviewService {
                 .build();
         return dto;
     }
+
+    default FoodReviewDTO entitiesToDTO(FoodReview foodReview, List<FoodReviewImage> foodReviewImages){
+        FoodReviewDTO foodReviewDTO = FoodReviewDTO.builder()
+                .fno(foodReview.getFno())
+                .restaurantName(foodReview.getRestaurantName())
+                .content(foodReview.getContent())
+                .regDate(foodReview.getRegDate())
+                .modDate(foodReview.getModDate()).build();
+        List<FoodReviewImageDTO> foodReviewImageDTOList = foodReviewImages.stream().map(foodReviewImage -> {
+            return FoodReviewImageDTO.builder().imgName(foodReviewImage.getImgName())
+                    .path(foodReviewImage.getPath())
+                    .uuid(foodReviewImage.getUuid()).build();
+        }).collect(Collectors.toList());
+
+        foodReviewDTO.setImageDTOList(foodReviewImageDTOList);
+
+        return foodReviewDTO;
+    }
+
+//    FoodReviewDTO getFoodReview(Long fno);
+
+
 }

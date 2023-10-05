@@ -15,6 +15,8 @@ import org.zerock.freview.entity.FoodReviewImage;
 import org.zerock.freview.repository.FoodReviewImageRepository;
 import org.zerock.freview.repository.FoodReviewRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -27,8 +29,8 @@ public class FoodReviewServiceImpl implements FoodReviewService{
     private final FoodReviewRepository foodReviewRepository; // 반드시 final 사용 필요
 
     private final FoodReviewImageRepository imageRepository;
-    @Override
     @Transactional
+    @Override
     public Long register(FoodReviewDTO foodReviewDTO) {
 
         Map<String, Object> entityMap = dtoToEntity(foodReviewDTO);
@@ -45,10 +47,25 @@ public class FoodReviewServiceImpl implements FoodReviewService{
     }
 
     @Override
-    public PageResultDTO<FoodReviewDTO, FoodReview> getList(PageRequestDTO requestDTO) {
+    public PageResultDTO<FoodReviewDTO, Object[]> getList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("fno").descending());
-        Page<FoodReview> result = foodReviewRepository.findAll(pageable);
-        Function<FoodReview, FoodReviewDTO> fn = (entity -> entityToDTO(entity));
+        Page<Object[]> result = foodReviewRepository.getListPage(pageable);
+        Function<Object[], FoodReviewDTO> fn = (arr -> entitiesToDTO(
+                (FoodReview)arr[0], (List<FoodReviewImage>) (Arrays.asList((FoodReviewImage)arr[1]))
+        ));
         return new PageResultDTO<>(result, fn);
     }
+
+//    @Override
+//    public FoodReviewDTO getFoodReview(Long fno) {
+//        List<Object[]> result = foodReviewRepository.getFoodReviewWithAll(fno);
+//        FoodReview foodReview = (FoodReview) result.get(0)[0]; // FoodReview 엔티티는 가장 앞에 존재, 모든 row가 동일한 값
+//        List<FoodReviewImage> foodReviewImageList = new ArrayList<>(); // 음식리뷰시 첨부한 이미지 개수 foodReviewImage 객체 필요
+//        result.forEach(arr->{
+//            FoodReviewImage foodReviewImage = (FoodReviewImage) arr[1];
+//            foodReviewImageList.add(foodReviewImage);
+//        });
+//
+//        return entitiesToDTO(foodReview, foodReviewImageList);
+//    }
 }

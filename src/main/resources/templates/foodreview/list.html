@@ -5,12 +5,27 @@
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4">여러분의 후기를 기다리고 있습니다.</h1>
+        <h1 class="mt-4">여러분의 후기를 기다리고 있습니다.
+            <span>
+                <a th:href="@{/foodreview/register}">
+                    <button type="button" class="btn btn-outline-primary">등록</button>
+                </a>
+            </span>
+        </h1>
+
+        <form action="/foodreview/list" method="get" id="searchForm">
+            <input type="hidden" name="page" value="1">
+        </form>
+
+
+
+
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">등록번호</th>
                 <th scope="col">식당명</th>
+                <!--<th scope="col">첨부사진</th>-->
                 <th scope="col">리뷰내용</th>
                 <th scope="col">등록일자</th>
 
@@ -20,13 +35,20 @@
             </thead>
             <tbody>
             <tr th:each="dto: ${result.dtoList}">
-                <th scope="row">[[${dto.fno}]]</th>
+                <th scope="row">
+                    <a th href="@{/foodreview/read(fno = ${dto.fno}, page = ${result.page})}">[[${dto.fno}]]</a>
+                </th>
                 <td>[[${dto.restaurantName}]]</td>
+                <!--<td><img th:if="${dto.imageDTOList.size() >0 && dto.imageDTOList[0].path != null}"
+                    th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|"></td>-->
                 <td>[[${dto.content}]]</td>
                 <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
             </tr>
             </tbody>
         </table>
+        <script th:inline="javascript">
+
+        </script>
 
         <ul class="pagination h-100 justify-content-center align-items-center">
             <li class="page-item" th:if="${result.prev}">

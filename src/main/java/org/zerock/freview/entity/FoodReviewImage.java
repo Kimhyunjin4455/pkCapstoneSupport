@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString(exclude = "FoodReview")
+@ToString
 public class FoodReviewImage {
 
     @Id
