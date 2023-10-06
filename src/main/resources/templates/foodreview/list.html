@@ -24,8 +24,8 @@
             <thead>
             <tr>
                 <th scope="col">등록번호</th>
-                <th scope="col">식당명</th>
-                <!--<th scope="col">첨부사진</th>-->
+                <th scope="col">식당명 & 첨부사진</th>
+<!--                <th scope="col">첨부사진</th>-->
                 <th scope="col">리뷰내용</th>
                 <th scope="col">등록일자</th>
 
@@ -38,9 +38,9 @@
                 <th scope="row">
                     <a th href="@{/foodreview/read(fno = ${dto.fno}, page = ${result.page})}">[[${dto.fno}]]</a>
                 </th>
-                <td>[[${dto.restaurantName}]]</td>
-                <!--<td><img th:if="${dto.imageDTOList.size() >0 && dto.imageDTOList[0].path != null}"
-                    th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|"></td>-->
+<!--                <td>[[${dto.restaurantName}]]</td>-->
+                <td><img th:if="${dto.imageDTOList.size() >0 && dto.imageDTOList[0].path != null}"
+                         th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|"><div></div>[[${dto.restaurantName}]]</td>
                 <td>[[${dto.content}]]</td>
                 <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
             </tr>

@@ -49,7 +49,9 @@ public class FoodReviewServiceImpl implements FoodReviewService{
     @Override
     public PageResultDTO<FoodReviewDTO, Object[]> getList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("fno").descending());
+
         Page<Object[]> result = foodReviewRepository.getListPage(pageable);
+
         Function<Object[], FoodReviewDTO> fn = (arr -> entitiesToDTO(
                 (FoodReview)arr[0], (List<FoodReviewImage>) (Arrays.asList((FoodReviewImage)arr[1]))
         ));

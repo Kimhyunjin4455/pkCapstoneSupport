@@ -51,6 +51,7 @@ public class FoodReviewController {
 //
 //        model.addAttribute("dto", foodReviewDTO);
         log.info("foodReviewDTO의 값은->" +foodReviewDTO);
+
         Long fno = foodReviewService.register(foodReviewDTO);
         redirectAttributes.addFlashAttribute("msg", fno);
         return "redirect:/foodreview/list";

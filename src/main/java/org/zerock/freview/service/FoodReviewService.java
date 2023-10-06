@@ -29,7 +29,8 @@ public interface FoodReviewService {
                 .content(foodReviewDTO.getContent())
                 .build();
 
-        entityMap.put("foodReview", foodReview);
+
+        entityMap.put("foodReview", foodReview); // foodReview 엔티티 생성 후 저장
 
         List<FoodReviewImageDTO> imageDTOList = foodReviewDTO.getImageDTOList();
 
@@ -69,6 +70,7 @@ public interface FoodReviewService {
                 .content(foodReview.getContent())
                 .regDate(foodReview.getRegDate())
                 .modDate(foodReview.getModDate()).build();
+
         List<FoodReviewImageDTO> foodReviewImageDTOList = foodReviewImages.stream().map(foodReviewImage -> {
             return FoodReviewImageDTO.builder().imgName(foodReviewImage.getImgName())
                     .path(foodReviewImage.getPath())
