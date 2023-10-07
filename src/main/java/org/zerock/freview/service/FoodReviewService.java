@@ -41,7 +41,7 @@ public interface FoodReviewService {
         if(imageDTOList != null && imageDTOList.size() > 0){
             List<FoodReviewImage> foodReviewImageList = imageDTOList.stream().map(foodReviewImageDTO -> {
                 FoodReviewImage foodReviewImage = FoodReviewImage.builder()
-//                        .inum(foodReviewImageDTO.getInum())
+                        .inum(foodReviewImageDTO.getInum())
                         .path(foodReviewImageDTO.getPath())
                         .imgName(foodReviewImageDTO.getImgName())
                         .uuid(foodReviewImageDTO.getUuid())
@@ -85,7 +85,7 @@ public interface FoodReviewService {
                 }
 
                 return FoodReviewImageDTO.builder().imgName(foodReviewImage.getImgName())
-//                        .inum(foodReviewImage.getInum())
+                        .inum(foodReviewImage.getInum())
                         .path(foodReviewImage.getPath())
                         .uuid(foodReviewImage.getUuid())
                         .build();
@@ -106,7 +106,7 @@ public interface FoodReviewService {
         return foodReviewDTO;
     }
 
-//    FoodReviewDTO getFoodReview(Long fno);
+    FoodReviewDTO getFoodReview(Long fno);
 
 
 }

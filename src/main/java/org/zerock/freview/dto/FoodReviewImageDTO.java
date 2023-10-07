@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 @Builder
 public class FoodReviewImageDTO {
 
-//    private Long inum;
+    private Long inum;
     private String uuid;
     private String imgName;
     private String path;

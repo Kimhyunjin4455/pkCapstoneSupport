@@ -59,16 +59,16 @@ public class FoodReviewServiceImpl implements FoodReviewService{
         return new PageResultDTO<>(result, fn);
     }
 
-//    @Override
-//    public FoodReviewDTO getFoodReview(Long fno) {
-//        List<Object[]> result = foodReviewRepository.getFoodReviewWithAll(fno);
-//        FoodReview foodReview = (FoodReview) result.get(0)[0]; // FoodReview 엔티티는 가장 앞에 존재, 모든 row가 동일한 값
-//        List<FoodReviewImage> foodReviewImageList = new ArrayList<>(); // 음식리뷰시 첨부한 이미지 개수 foodReviewImage 객체 필요
-//        result.forEach(arr->{
-//            FoodReviewImage foodReviewImage = (FoodReviewImage) arr[1];
-//            foodReviewImageList.add(foodReviewImage);
-//        });
-//
-//        return entitiesToDTO(foodReview, foodReviewImageList);
-//    }
+    @Override
+    public FoodReviewDTO getFoodReview(Long fno) {
+        List<Object[]> result = foodReviewRepository.getFoodReviewWithAll(fno);
+        FoodReview foodReview = (FoodReview) result.get(0)[0]; // FoodReview 엔티티는 가장 앞에 존재, 모든 row가 동일한 값
+        List<FoodReviewImage> foodReviewImageList = new ArrayList<>(); // 음식리뷰시 첨부한 이미지 개수 foodReviewImage 객체 필요
+        result.forEach(arr->{
+            FoodReviewImage foodReviewImage = (FoodReviewImage) arr[1];
+            foodReviewImageList.add(foodReviewImage);
+        });
+
+        return entitiesToDTO(foodReview, foodReviewImageList);
+    }
 }
