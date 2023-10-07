@@ -52,9 +52,10 @@ public class FoodReviewServiceImpl implements FoodReviewService{
 
         Page<Object[]> result = foodReviewRepository.getListPage(pageable);
 
-        Function<Object[], FoodReviewDTO> fn = (arr -> entitiesToDTO(
-                (FoodReview)arr[0], (List<FoodReviewImage>) (Arrays.asList((FoodReviewImage)arr[1]))
-        ));
+        Function<Object[], FoodReviewDTO> fn = (arr -> entitiesToDTO( // ?1
+                (FoodReview)arr[0],
+                (List<FoodReviewImage>) (Arrays.asList((FoodReviewImage)arr[1])))
+        );
         return new PageResultDTO<>(result, fn);
     }
 

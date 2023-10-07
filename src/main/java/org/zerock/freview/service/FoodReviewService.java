@@ -18,8 +18,12 @@ import java.util.stream.Collectors;
 public interface FoodReviewService {
     Long register(FoodReviewDTO dto);
 
+    // FoodReviewService의 getList()는 FoodReview, FoodReviewImage를 Object[] 배열을 리스트에 담은 형태, , 각 Object[]를 FoodReviewDTO라는 하나의 객체로 처리해야만 함
+    // 컨트롤러가 호출할 때 사용
     PageResultDTO<FoodReviewDTO, Object[]> getList(PageRequestDTO requestDTO);
 
+
+    // FoodReview를 JPA로 처리하기 위해 FoodReviewDTO를 FoodReview객체로 변환, Map타입을 이용해 리뷰와 이미지 객체 같이 처리
     default Map<String, Object> dtoToEntity(FoodReviewDTO foodReviewDTO){
         Map<String, Object> entityMap = new HashMap<>();
 
@@ -33,7 +37,6 @@ public interface FoodReviewService {
         entityMap.put("foodReview", foodReview); // foodReview 엔티티 생성 후 저장
 
         List<FoodReviewImageDTO> imageDTOList = foodReviewDTO.getImageDTOList();
-
         //FoodReviewImageDTO 처리
         if(imageDTOList != null && imageDTOList.size() > 0){
             List<FoodReviewImage> foodReviewImageList = imageDTOList.stream().map(foodReviewImageDTO -> {
@@ -63,6 +66,7 @@ public interface FoodReviewService {
         return dto;
     }
 
+    // JPA를 통해서 나오는 엔티티 객체들을 FoodReviewDTO로 변환하는 entitiesToDto()추가
     default FoodReviewDTO entitiesToDTO(FoodReview foodReview, List<FoodReviewImage> foodReviewImages){
         FoodReviewDTO foodReviewDTO = FoodReviewDTO.builder()
                 .fno(foodReview.getFno())

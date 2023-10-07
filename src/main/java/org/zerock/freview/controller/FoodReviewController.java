@@ -43,6 +43,8 @@ public class FoodReviewController {
     public void register(){
     }
 
+
+    // post방식으로 전달된 파라미터들을 FoodReviewDTO로 수집해서 FoodReviewService 타입 객체의 register() 호출
     @PostMapping("/register")
 //    public String register(Long fno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
     public String register(FoodReviewDTO foodReviewDTO, RedirectAttributes redirectAttributes){
