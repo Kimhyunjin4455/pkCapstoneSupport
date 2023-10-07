@@ -41,6 +41,7 @@ public interface FoodReviewService {
         if(imageDTOList != null && imageDTOList.size() > 0){
             List<FoodReviewImage> foodReviewImageList = imageDTOList.stream().map(foodReviewImageDTO -> {
                 FoodReviewImage foodReviewImage = FoodReviewImage.builder()
+//                        .inum(foodReviewImageDTO.getInum())
                         .path(foodReviewImageDTO.getPath())
                         .imgName(foodReviewImageDTO.getImgName())
                         .uuid(foodReviewImageDTO.getUuid())
@@ -75,13 +76,32 @@ public interface FoodReviewService {
                 .regDate(foodReview.getRegDate())
                 .modDate(foodReview.getModDate()).build();
 
-        List<FoodReviewImageDTO> foodReviewImageDTOList = foodReviewImages.stream().map(foodReviewImage -> {
-            return FoodReviewImageDTO.builder().imgName(foodReviewImage.getImgName())
-                    .path(foodReviewImage.getPath())
-                    .uuid(foodReviewImage.getUuid()).build();
-        }).collect(Collectors.toList());
+        if(foodReviewImages != null && foodReviewImages.size() > 0 ){
 
-        foodReviewDTO.setImageDTOList(foodReviewImageDTOList);
+            List<FoodReviewImageDTO> foodReviewImageDTOList = foodReviewImages.stream().map(foodReviewImage -> {
+
+                if(foodReviewImage == null){
+                    return null;
+                }
+
+                return FoodReviewImageDTO.builder().imgName(foodReviewImage.getImgName())
+//                        .inum(foodReviewImage.getInum())
+                        .path(foodReviewImage.getPath())
+                        .uuid(foodReviewImage.getUuid())
+                        .build();
+            }).collect(Collectors.toList());
+
+            foodReviewDTO.setImageDTOList(foodReviewImageDTOList);
+        }
+// foodReviewImageDTOList가 null인 경우에도 나오게 하기 위해 위 코드로 수정, 이미지 관련 문제 발생 시 아래 내용으로 원복
+//        List<FoodReviewImageDTO> foodReviewImageDTOList = foodReviewImages.stream().map(foodReviewImage -> {
+//            return FoodReviewImageDTO.builder().imgName(foodReviewImage.getImgName())
+//                    .inum(foodReviewImage.getInum())
+//                    .path(foodReviewImage.getPath())
+//                    .uuid(foodReviewImage.getUuid()).build();
+//        }).collect(Collectors.toList());
+//
+//        foodReviewDTO.setImageDTOList(foodReviewImageDTOList);
 
         return foodReviewDTO;
     }

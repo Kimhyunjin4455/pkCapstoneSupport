@@ -16,7 +16,8 @@ public interface FoodReviewRepository extends JpaRepository<FoodReview, Long> {
 
     // FoodReviewRepository 인터페이스의 getListPage()메서드는 FoodReview객체와 FoodReviewImage객체를 Object[]로 반환
     @Query("select f, fi from FoodReview f " +
-            "left outer join FoodReviewImage fi on fi.foodReview = f")
+            "left outer join FoodReviewImage fi on fi.foodReview = f group by f"
+    )
     Page<Object[]> getListPage(Pageable pageable);
 
 //    @Query("select f, fi  from FoodReview f " +
