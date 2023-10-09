@@ -21,7 +21,7 @@ public interface FoodReviewRepository extends JpaRepository<FoodReview, Long> {
     Page<Object[]> getListPage(Pageable pageable);
 
     @Query("select f, fi  from FoodReview f " +
-            "left outer join FoodReviewImage fi on fi.foodReview = f " +
+            "left outer join FoodReviewImage fi on fi.foodReview = f" +
             " where f.fno= :fno group by fi"
     )
     List<Object[]> getFoodReviewWithAll(Long fno); // 특정 음식 리뷰  조회

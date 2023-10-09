@@ -59,5 +59,12 @@ public class FoodReviewController {
         return "redirect:/foodreview/list";
     }
 
+    @GetMapping("/read")
+    public void read(long fno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
+        log.info("fno: " +fno);
+        FoodReviewDTO foodReviewDTO = foodReviewService.getFoodReview(fno);
+        model.addAttribute("dto", foodReviewDTO);
+    }
+
 
 }
