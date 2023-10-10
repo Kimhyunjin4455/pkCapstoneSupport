@@ -106,7 +106,12 @@ public interface FoodReviewService {
         return foodReviewDTO;
     }
 
+    // FoodReviewDTO read(Long fno);
+
     FoodReviewDTO getFoodReview(Long fno);
+
+//    void remove(Long fno);
+    void modify(FoodReviewDTO dto);
 
 
 }

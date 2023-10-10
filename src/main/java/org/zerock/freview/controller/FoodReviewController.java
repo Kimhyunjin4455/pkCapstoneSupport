@@ -59,11 +59,26 @@ public class FoodReviewController {
         return "redirect:/foodreview/list";
     }
 
-    @GetMapping("/read")
+    @GetMapping({"/read", "/modify"})
     public void read(long fno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
         log.info("fno: " +fno);
         FoodReviewDTO foodReviewDTO = foodReviewService.getFoodReview(fno);
         model.addAttribute("dto", foodReviewDTO);
+    }
+
+    @PostMapping("/modify")
+    public String modify(FoodReviewDTO dto,
+                         @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
+                         RedirectAttributes redirectAttributes){
+        log.info("post modify...............................");
+        log.info("dto: " + dto); // 현재 dto의 값이 널로 조회됨
+
+        foodReviewService.modify(dto);
+
+        redirectAttributes.addAttribute("page", requestDTO.getPage());
+        redirectAttributes.addAttribute("fno", dto.getFno());
+
+        return "redirect:/foodreview/read";
     }
 
 

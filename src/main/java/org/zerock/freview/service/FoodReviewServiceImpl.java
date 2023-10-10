@@ -15,10 +15,7 @@ import org.zerock.freview.entity.FoodReviewImage;
 import org.zerock.freview.repository.FoodReviewImageRepository;
 import org.zerock.freview.repository.FoodReviewRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
@@ -70,5 +67,31 @@ public class FoodReviewServiceImpl implements FoodReviewService{
         });
 
         return entitiesToDTO(foodReview, foodReviewImageList);
+    }
+
+//    @Override
+//    public void remove(Long fno) {
+//        List<Object[]> result = foodReviewRepository.getFoodReviewWithAll(fno);
+//        List<FoodReviewImage> foodReviewImageList = new ArrayList<>();
+//
+//        result.forEach(arr->{
+//            FoodReviewImage foodReviewImage = (FoodReviewImage) arr[1];
+//            foodReviewImageList.remove(foodReviewImage);
+//        });
+//
+//        foodReviewRepository.delete();
+//    }
+
+    @Override
+    public void modify(FoodReviewDTO dto) {
+        Optional<FoodReview> result = foodReviewRepository.findById(dto.getFno());
+        if (result.isPresent()){
+            FoodReview foodReview = result.get();
+
+            foodReview.changeContent(dto.getContent());
+
+            foodReviewRepository.save(foodReview);
+        }
+
     }
 }

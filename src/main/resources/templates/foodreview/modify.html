@@ -3,7 +3,11 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
-    <h1 class="mt-4">상세 리뷰 내용</h1>
+    <h1 class="mt-4">리뷰 수정</h1>
+
+    <form action="/foodreview/modify" method="post">
+
+      <input type="hidden" name="page" th:value="${requestDTO.page}">
 
     <div class="form-group">
       <label>지점명</label>
@@ -12,7 +16,7 @@
 
     <div class="form-group">
       <label>리뷰 내용</label>
-      <input type="text" class="form-control" name="title" th:value="${dto.content}" readonly>
+      <input type="text" class="form-control" name="title" th:value="${dto.content}">
     </div>
 
 
@@ -49,30 +53,32 @@
       </ul>
     </div>
 
+    </form>
+
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
+      <button type="button" class="btn btn-info" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
 
-      <a th:href="@{/foodreview/modify(fno = ${dto.fno}, page=${requestDTO.page})}">
-        <button type="button" class="btn btn-info" style="margin-right: 10px;">리뷰 수정</button>
-      </a>
+      <button type="button" class="btn btn-primary modifyBtn" style="margin-right: 10px;">수정 완료</button>
 
-<!--      <a>-->
-<!--        <button type="button" class="btn btn-danger removeReview">삭제</button>-->
-<!--      </a>-->
+
+<!--      <button type="button" class="btn btn-danger removeReview">삭제</button>-->
     </div>
 
 
 
-
-
-    <script>
+    <script th:inline="javascript">
       $(document).ready(function(e){
+        var actionForm = $("form"); // form 태그 객체
+
+        $(".modifyBtn").click(function(){
+          if(!confirm("수정하시겠습니까?")){
+            return;
+          }
+        actionForm.attr("action", "/foodreview/modify").attr("method", "post").submit();
+        });
 
       });
 
-<!--      $('.removeReview').on("click", function(){-->
-<!--        var fno = $().val(); // 삭제할 리뷰의 fno-->
-<!--      })-->
     </script>
 
   </th:block>
