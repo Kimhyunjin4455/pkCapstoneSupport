@@ -75,8 +75,9 @@ public class FoodReviewController {
 
         foodReviewService.modify(dto);
 
-        redirectAttributes.addAttribute("page", requestDTO.getPage());
         redirectAttributes.addAttribute("fno", dto.getFno());
+        redirectAttributes.addAttribute("page", requestDTO.getPage());
+
 
         return "redirect:/foodreview/read";
     }

@@ -8,15 +8,17 @@
     <form action="/foodreview/modify" method="post">
 
       <input type="hidden" name="page" th:value="${requestDTO.page}">
+      <input type="hidden" name="fno" th:value="${dto.fno}">
+      <!-- 위 코드 한줄로 인해 fno가 전달 되지 않아(페이로드 통해 확인) 수정 반영이 되지 않았던 것.-->
 
-    <div class="form-group">
+      <div class="form-group">
       <label>지점명</label>
-      <input type="text" class="form-control" name="title" th:value="${dto.restaurantName}" readonly>
+      <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" readonly>
     </div>
 
     <div class="form-group">
       <label>리뷰 내용</label>
-      <input type="text" class="form-control" name="title" th:value="${dto.content}">
+      <input type="text" class="form-control" name="content" th:value="${dto.content}">
     </div>
 
 
@@ -66,15 +68,25 @@
 
 
 
-    <script th:inline="javascript">
+    <script>
       $(document).ready(function(e){
         var actionForm = $("form"); // form 태그 객체
+
+<!--        var inputContent = $('input[name="content"]')-->
+
+<!--        var data = {fno:fno, restaurantName:restaurantName, content:inputContent.val()};-->
+
+<!--        console.log(data)-->
 
         $(".modifyBtn").click(function(){
           if(!confirm("수정하시겠습니까?")){
             return;
           }
-        actionForm.attr("action", "/foodreview/modify").attr("method", "post").submit();
+          actionForm.attr("action","/foodreview/modify")
+                  .attr("method", "post")
+                  .submit();
+
+
         });
 
       });
