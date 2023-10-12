@@ -3,16 +3,17 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
-    <h1 class="mt-4">상세 리뷰 내용</h1>
+    <h1 class="mt-4" style="margin-bottom: 20px;" >상세 리뷰 내용</h1>
 
     <div class="form-group">
-      <label>지점명</label>
-      <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" readonly>
+      <label style="margin-bottom: 10px;">지점명</label>
+      <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" style="margin-bottom: 10px;" readonly>
     </div>
 
-    <div class="form-group">
-      <label>리뷰 내용</label>
-      <input type="text" class="form-control" name="content" th:value="${dto.content}" readonly>
+    <div class="text_box form-group" style="margin-bottom: 30px;">
+      <label style="margin-bottom: 10px;">리뷰 내용</label>
+      <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 10px;" readonly></textarea>
+      <!--textarea에서는 th:text로 값 받아오기-->
     </div>
 
 
@@ -39,8 +40,31 @@
                 width: 100px;
             }
 
+            .modalClose{
+                display: none;
+            }
+
+            .text_box {
+                position:relative;
+                display:inline-block;
+                width:100%;
+            }
+
+            .text_box textarea {
+                width:100%;
+                height:152px;
+                color:#666;
+                font-family:"ht_r";
+                font-size:18px;
+                line-height:28px;
+                padding:20px;
+                border:1px solid #e4dcd3;
+                outline:0;
+                resize:none
+            }
+
         </style>
-    <div class="uploadResult">
+    <div class="uploadResult" style="margin-bottom: 20px;">
       <ul>
         <li th:each="foodReviewImage: ${dto.imageDTOList}" th:data-file="${foodReviewImage.getThumbnailURL()}">
           <img th:if="${foodReviewImage.path != null}"
@@ -50,7 +74,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
+      <button type="button" class="btn btn-secondary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
 
       <a th:href="@{/foodreview/modify(fno = ${dto.fno}, page=${requestDTO.page})}">
         <button type="button" class="btn btn-info" style="margin-right: 10px;">리뷰 수정</button>
@@ -65,14 +89,14 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Picture</h5>
-            <button type="button" class="Close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" class="replyClose">&times;</span>
+            <h5 class="modal-title">첨부 사진</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+              <span aria-hidden="true" class="close">&times;</span>
             </button>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary replyClose" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
           </div>
         </div>
       </div>
@@ -88,8 +112,9 @@
         // 모달창
         var modal = $('.modal');
 
-        $(".replyClose").on("click", () => {
-          modal.style.display = "none";
+
+        $(".imageModal button").on("click", () => {
+          $(".imageModal").modal("hide");
         });
 
         $(".uploadResult li").click(function(){

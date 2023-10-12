@@ -3,7 +3,7 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
-    <h1 class="mt-4">리뷰 수정</h1>
+    <h1 class="mt-4" style="margin-bottom: 20px;">리뷰 수정</h1>
 
     <form action="/foodreview/modify" method="post">
 
@@ -12,13 +12,15 @@
       <!-- 위 코드 한줄로 인해 fno가 전달 되지 않아(페이로드 통해 확인) 수정 반영이 되지 않았던 것.-->
 
       <div class="form-group">
-      <label>지점명</label>
-      <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" readonly>
+      <label style="margin-bottom: 10px;">지점명</label>
+      <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" style="margin-bottom: 10px;"readonly>
+
     </div>
 
-    <div class="form-group">
-      <label>리뷰 내용</label>
-      <input type="text" class="form-control" name="content" th:value="${dto.content}">
+    <div class="text_box form-group">
+      <label style="margin-bottom: 10px;">리뷰 내용</label>
+      <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 30px;"></textarea>
+      <div class="count"><span id="span1" th:text="${dto.content.length}"></span>/200</div>
     </div>
 
 
@@ -45,6 +47,34 @@
                 width: 100px;
             }
 
+            .text_box {
+                position:relative;
+                display:inline-block;
+                width:100%;
+            }
+
+            .text_box textarea {
+                width:100%;
+                height:152px;
+                color:#666;
+                font-family:"ht_r";
+                font-size:18px;
+                line-height:28px;
+                padding:20px;
+                border:1px solid #e4dcd3;
+                outline:0;
+                resize:none
+            }
+
+            .text_box .count {
+                position:absolute;
+                right:20px;
+                bottom:20px;
+                color:#666;
+                font-family:"ht_r";
+                font-size:15px;
+            }
+
         </style>
     <div class="uploadResult">
       <ul>
@@ -58,12 +88,12 @@
     </form>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-info" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
+      <button type="button" class="btn btn-secondary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
 
-      <button type="button" class="btn btn-primary modifyBtn" style="margin-right: 10px;">수정 완료</button>
+      <button type="button" class="btn btn-success modifyBtn" style="margin-right: 10px;">수정 완료</button>
 
 
-<!--      <button type="button" class="btn btn-danger removeReview">삭제</button>-->
+<!--      <button type="button" class="btn btn-warning removeReview">삭제</button>-->
     </div>
 
 
@@ -85,9 +115,23 @@
           actionForm.attr("action","/foodreview/modify")
                   .attr("method", "post")
                   .submit();
-
-
         });
+
+        $(".text_box textarea").keyup(function(){
+          var content = $(this).val();
+          $(".text_box .count span").html(content.length);
+
+          if (content.length > 200){
+            alert("최대 200자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 200));
+            $('.text_box .count span').html(200);
+          }
+        });
+
+        function TextLengthSetting(){
+          var val = document.getElementById('span1').innerHTML
+          document.getElementById('span1').innerHTML = val.length;
+        }
 
       });
 

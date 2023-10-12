@@ -8,15 +8,16 @@
 
         <form th:action="@{/foodreview/register}" th:method="post">
             <div class="form-group">
-                <label>지점명</label>
-                <input type="text" class="form-control" name="restaurantName" placeholder="지점명 입력">
+                <label style="margin-bottom: 10px;">지점명</label>
+                <input type="text" class="form-control" name="restaurantName" placeholder="지점명 입력" style="margin-bottom: 10px;">
             </div>
-            <div class="form-group">
+            <div class="text_box form-group">
                 <label for="exampleFormControlTextarea1" class="form-label">리뷰 작성란</label>
-                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="리뷰 내용을 입력해주세요."></textarea>
+                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" minlength="20" placeholder="20자 이상의 리뷰 내용을 입력해주세요." style="margin-bottom: 10px;"></textarea>
+                <div class="count"><span>0</span>/200</div>
             </div>
             <div class="form-group fileForm">
-                <label>이미지 첨부 파일</label>
+                <label style="margin-bottom: 10px;">이미지 첨부 파일</label>
                 <div class="custom-file">
                     <input type="file" class="form-control custom-file-input files" id="fileInput" multiple>
                     <label class="custom-file-label" data-browse="이미지 찾기"></label>
@@ -24,7 +25,8 @@
                 </div>
             </div>
             <div class="box"></div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
+            <button type="submit" class="btn btn-success">리뷰 등록</button>
         </form>
 
         <style>
@@ -48,6 +50,33 @@
             }
             .uploadResult ul li img {
                 width: 100px;
+            }
+
+            .text_box {
+                position:relative;
+                display:inline-block;
+                width:100%;
+            }
+
+            .text_box textarea {
+                width:100%;
+                height:152px;
+                color:#666;
+                font-family:"ht_r";
+                font-size:18px;
+                line-height:28px;
+                padding:20px;
+                border:1px solid #e4dcd3;
+                outline:0;
+                resize:none
+            }
+            .text_box .count {
+                position:absolute;
+                right:20px;
+                bottom:20px;
+                color:#666;
+                font-family:"ht_r";
+                font-size:15px;
             }
         </style>
         <div class="uploadResult">
@@ -91,6 +120,7 @@
 
                     uploadUL.append(str);
                 }
+
 
                 $(".custom-file-input").on("change", function() {
                     var fileName = $(this).val().split("\\").pop();
@@ -136,12 +166,12 @@
                     }); //$.ajax
                 }); //end change event
 
-                $(".btn-primary").on("click", function(e) {
+                $(".btn-success").on("click", function(e) {
 
-                    //if(!confirm("등록 하시면 삭제하실 수 없습니다.")){
-                    //    return "";
+                    if(!confirm("등록 하시면 삭제하실 수 없습니다.")){
+                        return false;
+                    }
 
-                    //}
 
                     e.preventDefault();
 
@@ -160,7 +190,24 @@
 
                     $("form").submit();
                 });
+
+                $(".text_box textarea").keyup(function(){
+                    var content = $(this).val();
+                    $(".text_box .count span").html(content.length);
+
+
+                    if (content.length > 200){
+                        alert("최대 200자까지 입력 가능합니다.");
+                        $(this).val(content.substring(0, 200));
+                        $('.text_box .count span').html(200);
+                    }
                 });
+
+
+
+
+
+            });
         </script>
     </th:block>
 </th:block>
