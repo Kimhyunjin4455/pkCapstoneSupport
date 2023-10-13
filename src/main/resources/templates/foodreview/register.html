@@ -6,14 +6,14 @@
         <h1 class="mt-4">음식 리뷰 작성 페이지</h1>
         <div></div>
 
-        <form th:action="@{/foodreview/register}" th:method="post">
+        <form th:action="@{/foodreview/register}" th:method="post" id="reviewForm">
             <div class="form-group">
                 <label style="margin-bottom: 10px;">지점명</label>
                 <input type="text" class="form-control" name="restaurantName" placeholder="지점명 입력" style="margin-bottom: 10px;">
             </div>
             <div class="text_box form-group">
                 <label for="exampleFormControlTextarea1" class="form-label">리뷰 작성란</label>
-                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" minlength="20" placeholder="20자 이상의 리뷰 내용을 입력해주세요." style="margin-bottom: 10px;"></textarea>
+                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="20자 이상의 리뷰 내용을 입력해주세요." style="margin-bottom: 10px;"></textarea>
                 <div class="count"><span>0</span>/200</div>
             </div>
             <div class="form-group fileForm">
@@ -122,6 +122,8 @@
                 }
 
 
+
+
                 $(".custom-file-input").on("change", function() {
                     var fileName = $(this).val().split("\\").pop();
                     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
@@ -168,9 +170,12 @@
 
                 $(".btn-success").on("click", function(e) {
 
+
+
                     if(!confirm("등록 하시면 삭제하실 수 없습니다.")){
                         return false;
                     }
+
 
 
                     e.preventDefault();
@@ -200,6 +205,18 @@
                         alert("최대 200자까지 입력 가능합니다.");
                         $(this).val(content.substring(0, 200));
                         $('.text_box .count span').html(200);
+                    }
+                });
+
+                $(".text_box textarea").keyup(function(){
+                    var content = $(this).val();
+                    $(".text_box .count span").html(content.length);
+
+
+                    if (content.length < 20){
+                        alert("최소 20자부터 입력 가능합니다.");
+                        $(this).val(content.substring(0, 200));
+
                     }
                 });
 
