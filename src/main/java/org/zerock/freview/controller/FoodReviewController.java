@@ -82,7 +82,7 @@ public class FoodReviewController {
         return "redirect:/foodreview/read";
     }
 
-    //delete추가.
+    //delete추가
 
 
 }
