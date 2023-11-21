@@ -21,8 +21,9 @@ public class FoodReview extends BaseEntity{
     @Column(length = 1500, nullable = false)
     private String content;
 
-//    @Column(nullable = false)
-//    private String upgradeContent;
+    @Column
+    private String possibility;
+
 
     public void changeRestaurantName(String restaurantName){
         this.restaurantName = restaurantName;
@@ -32,6 +33,7 @@ public class FoodReview extends BaseEntity{
         this.content = content;
     }
 
-//    public void changeUpgradeContent(String upgradeContent){this.upgradeContent = upgradeContent;}
+    public void changePossibility(String possibility){this.possibility = possibility;}
+
 
 }

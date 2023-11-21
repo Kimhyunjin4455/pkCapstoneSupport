@@ -17,10 +17,9 @@ import java.util.List;
 public class FoodReviewDTO {
     private Long fno;
     private String restaurantName;
-
     private String content;
 
-//    private String upgradeContent;
+    private String possibility;
 
     @Builder.Default
     private List<FoodReviewImageDTO> imageDTOList = new ArrayList<>();
