@@ -3,15 +3,15 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
-    <h1 class="mt-4" style="margin-bottom: 20px;" >상세 리뷰 내용</h1>
+    <h1 class="mt-4" style="margin-bottom: 20px;" >위험성평가 결과 내용</h1>
 
     <div class="form-group">
-      <label style="margin-bottom: 10px;">지점명</label>
+      <label style="margin-bottom: 10px;">연구실 위치</label>
       <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" style="margin-bottom: 10px;" readonly>
     </div>
 
     <div class="text_box form-group" style="margin-bottom: 30px;">
-      <label style="margin-bottom: 10px;">리뷰 내용</label>
+      <label style="margin-bottom: 10px;">신고 내용</label>
       <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 10px;" readonly></textarea>
       <!--textarea에서는 th:text로 값 받아오기-->
     </div>

@@ -31,6 +31,7 @@ public interface FoodReviewService {
                 .fno(foodReviewDTO.getFno())
                 .restaurantName(foodReviewDTO.getRestaurantName())
                 .content(foodReviewDTO.getContent())
+//                .upgradeContent(foodReviewDTO.getUpgradeContent())
                 .build();
 
 
@@ -61,6 +62,7 @@ public interface FoodReviewService {
                 .fno(entity.getFno())
                 .restaurantName(entity.getRestaurantName())
                 .content(entity.getContent())
+//                .upgradeContent(entity.getUpgradeContent())
                 .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
                 .build();
@@ -73,6 +75,7 @@ public interface FoodReviewService {
                 .fno(foodReview.getFno())
                 .restaurantName(foodReview.getRestaurantName())
                 .content(foodReview.getContent())
+//                .upgradeContent(foodReview.getUpgradeContent())
                 .regDate(foodReview.getRegDate())
                 .modDate(foodReview.getModDate()).build();
 

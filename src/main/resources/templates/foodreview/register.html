@@ -3,21 +3,32 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
 
-        <h1 class="mt-4">음식 리뷰 작성 페이지</h1>
+        <h1 class="mt-4">자율 안전신고 페이지</h1>
         <div></div>
 
         <form th:action="@{/foodreview/register}" th:method="post" id="reviewForm">
             <div class="form-group">
-                <label style="margin-bottom: 10px;">지점명</label>
-                <input type="text" class="form-control" name="restaurantName" placeholder="지점명 입력" style="margin-bottom: 10px;">
+                <label style="margin-bottom: 10px;">연구실 위치</label>
+                <input type="text" class="form-control" name="restaurantName" placeholder="(예시)전기안전연구실 / 부경대학교 나래관 511호" style="margin-bottom: 10px;">
             </div>
             <div class="text_box form-group">
-                <label for="exampleFormControlTextarea1" class="form-label">리뷰 작성란</label>
-                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="20자 이상의 리뷰 내용을 입력해주세요." style="margin-bottom: 10px;"></textarea>
+                <label for="exampleFormControlTextarea1" class="form-label">신고 내용</label>
+                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="아래 양식에 맞추어 작성 부탁드립니다.&#13;&#10;가게/위험물명:&#13;&#10;위험내용:" style="margin-bottom: 10px;">가게 / 위험물명:&#13;&#10;위험내용 : </textarea>
                 <div class="count"><span>0</span>/200</div>
             </div>
+<!--            <div class="form-group">-->
+<!--                <form action="#">-->
+<!--                    <label for="lang">개선여부</label>-->
+<!--                    <select name="upgradeContent" id="lang">-->
+<!--                        <option value="upgradeContent">O</option>-->
+<!--                        <option value="upgradeContent">X</option>-->
+<!--                        <option value="upgradeContent">위험성 평가 진행중</option>-->
+<!--                    </select>-->
+<!--                </form>-->
+
+<!--            </div>-->
             <div class="form-group fileForm">
-                <label style="margin-bottom: 10px;">이미지 첨부 파일</label>
+                <label style="margin-bottom: 10px;">이미지 첨부 파일 *(필수)</label>
                 <div class="custom-file">
                     <input type="file" class="form-control custom-file-input files" id="fileInput" multiple>
                     <label class="custom-file-label" data-browse="이미지 찾기"></label>
@@ -213,11 +224,11 @@
                     $(".text_box .count span").html(content.length);
 
 
-                    if (content.length < 20){
-                        alert("최소 20자부터 입력 가능합니다.");
-                        $(this).val(content.substring(0, 200));
+<!--                    if (content.length < 20){-->
+<!--                        alert("최소 20자부터 입력 가능합니다.");-->
+<!--                        $(this).val(content.substring(0, 200));-->
 
-                    }
+<!--                    }-->
                 });
 
 

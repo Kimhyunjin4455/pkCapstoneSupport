@@ -20,6 +20,8 @@ public class FoodReviewDTO {
 
     private String content;
 
+//    private String upgradeContent;
+
     @Builder.Default
     private List<FoodReviewImageDTO> imageDTOList = new ArrayList<>();
     private LocalDateTime regDate, modDate;

@@ -5,7 +5,7 @@
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4" style="margin-bottom: 30px;"> &nbsp&nbsp&nbsp&nbsp&nbsp 여러분의 후기를 기다리고 있습니다. &nbsp&nbsp
+        <h1 class="mt-4" style="margin-bottom: 30px;"> &nbsp&nbsp&nbsp&nbsp&nbsp 유해위험요인 신고. &nbsp&nbsp
             <span>
                 <a th:href="@{/foodreview/register}">
                     <button type="button" class="btn btn-outline-primary">등록</button>
@@ -24,10 +24,11 @@
             <thead>
             <tr>
                 <th scope="col">등록번호</th>
-                <th scope="col">식당명 & 첨부사진</th>
-<!--                <th scope="col">첨부사진</th>-->
-                <th scope="col">리뷰내용</th>
                 <th scope="col">등록일자</th>
+<!--                <th scope="col">첨부사진</th>-->
+                <th scope="col">연구분야&첨부사진</th>
+                <th scope="col">신고 내용</th>
+                <th scope="col">개선 여부</th>
 
                 <!--<th scope="col">썸네일</th>-->
 
@@ -51,6 +52,7 @@
                 </td>
                 <td>[[${dto.content}]]</td>
                 <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
+                <td>..</td>
             </tr>
             </tbody>
         </table>
