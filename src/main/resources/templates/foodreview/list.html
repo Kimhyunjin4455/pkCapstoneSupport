@@ -39,19 +39,12 @@
                 <th scope="row">
                     <a th:href="@{/foodreview/read(fno= ${dto.fno}, page= ${result.page})}"/>[[${dto.fno}]]
                 </th>
-<!--                <td>[[${dto.restaurantName}]]</td>-->
-
+                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
                 <td>
-<!--                    <template th:if="${dto.imageDTOList.size() > 0 && dto.imageDTOList[0] != null}">-->
-<!--                        <img th:if="${dto.imageDTOList[0].path != null }"-->
-<!--                             th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|" >-->
-<!--                    </template>-->
                     <img th:if="${dto.imageDTOList.size() >0 && dto.imageDTOList[0].path != null}"
                          th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|"><div></div>[[${dto.restaurantName}]]
-
                 </td>
                 <td>[[${dto.content}]]</td>
-                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
                 <td>..</td>
             </tr>
             </tbody>
