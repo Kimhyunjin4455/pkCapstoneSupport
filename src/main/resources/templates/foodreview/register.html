@@ -19,10 +19,10 @@
             <div class="form-group">
                 <label for="lang">개선여부</label>
                 <select name="possibility" id="lang">
-                    <option value="none" disabled>==선택==</option>
-                    <option value="O">O</option>
-                    <option value="X">X</option>
-                    <option value="위험성 평가 진행중">위험성 평가 진행중</option>
+                    <option value="none" selected disabled>==선택==</option>
+<!--                    <option value="O">O</option>-->
+<!--                    <option value="X">X</option>-->
+                    <option value="위험성 평가 진행중">위험성 평가 받기</option>
                 </select>
             </div>
 <!--            <div class="form-group">-->
@@ -184,11 +184,9 @@
                 $(".btn-success").on("click", function(e) {
 
 
-
-                    if(!confirm("등록 하시면 삭제하실 수 없습니다.")){
+                    if(!confirm("이미지 미첨부시 신고 타당성이 저하됩니다.")){
                         return false;
                     }
-
 
 
                     e.preventDefault();

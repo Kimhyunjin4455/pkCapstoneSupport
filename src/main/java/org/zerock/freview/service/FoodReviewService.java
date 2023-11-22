@@ -62,7 +62,7 @@ public interface FoodReviewService {
                 .fno(entity.getFno())
                 .restaurantName(entity.getRestaurantName())
                 .content(entity.getContent())
-//                .upgradeContent(entity.getUpgradeContent())
+                .possibility(entity.getPossibility())
                 .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
                 .build();

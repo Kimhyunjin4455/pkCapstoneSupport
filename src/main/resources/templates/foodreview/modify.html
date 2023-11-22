@@ -3,7 +3,7 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
-    <h1 class="mt-4" style="margin-bottom: 20px;">리뷰 수정</h1>
+    <h1 class="mt-4" style="margin-bottom: 20px;">위험성평  수정</h1>
 
     <form action="/foodreview/modify" method="post">
 
@@ -12,16 +12,25 @@
       <!-- 위 코드 한줄로 인해 fno가 전달 되지 않아(페이로드 통해 확인) 수정 반영이 되지 않았던 것.-->
 
       <div class="form-group">
-      <label style="margin-bottom: 10px;">지점명</label>
+      <label style="margin-bottom: 10px;">연구실 위치</label>
       <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" style="margin-bottom: 10px;"readonly>
 
-    </div>
+      </div>
 
-    <div class="text_box form-group">
-      <label style="margin-bottom: 10px;">리뷰 내용</label>
-      <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 30px;" ></textarea>
-      <div class="count"><span id="span1" th:text="${dto.content.length}"></span>/200</div>
-    </div>
+      <div class="text_box form-group">
+        <label style="margin-bottom: 10px;">신고 내용</label>
+        <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 30px;" ></textarea>
+        <div class="count"><span id="span1" th:text="${dto.content.length}"></span>/200</div>
+      </div>
+
+      <div class="form-group">
+        <label for="lang">개선 여부</label>
+        <select name="possibility" id="lang">
+          <option value="none" selected disabled>==선택==</option>
+          <option value="O">O</option>
+          <option value="X">X</option>
+        </select>
+      </div>
 
 
     <style>
