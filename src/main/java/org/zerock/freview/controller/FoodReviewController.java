@@ -27,10 +27,10 @@ public class FoodReviewController {
         log.info("exSideBar.................");
     }
 
-    @GetMapping("/")
+    @GetMapping({"","/"})
     public String index(){
 
-        return "redirect:/guestbook/list";
+        return "redirect:/foodreview/list";
     }
 
     @GetMapping("/list")

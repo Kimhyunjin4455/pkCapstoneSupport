@@ -90,6 +90,7 @@ public class FoodReviewServiceImpl implements FoodReviewService{
 
 
             foodReview.changeContent(dto.getContent());
+            foodReview.changePossibility(dto.getPossibility());
 
             foodReviewRepository.save(foodReview);
         }

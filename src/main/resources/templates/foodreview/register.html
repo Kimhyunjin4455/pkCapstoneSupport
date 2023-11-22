@@ -17,7 +17,7 @@
                 <div class="count"><span>0</span>/200</div>
             </div>
             <div class="form-group">
-                <label for="lang">개선여부</label>
+                <label for="lang" style="margin-bottom: 10px;">개선여부</label>
                 <select name="possibility" id="lang">
                     <option value="none" selected disabled>==선택==</option>
 <!--                    <option value="O">O</option>-->
@@ -32,9 +32,8 @@
             <div class="form-group fileForm">
                 <label style="margin-bottom: 10px;">이미지 첨부 파일 *(필수)</label>
                 <div class="custom-file">
-                    <input type="file" class="form-control custom-file-input files" id="fileInput" multiple>
-                    <label class="custom-file-label" data-browse="이미지 찾기"></label>
-
+                    <input type="file" class="form-control custom-file-input files" id="fileInput" multiple style="margin-bottom: 10px;">
+<!--                    <label class="custom-file-label" data-browse="이미지 찾기" style="margin-bottom: 10px;"></label>-->
                 </div>
             </div>
             <div class="box"></div>
@@ -134,7 +133,29 @@
                     uploadUL.append(str);
                 }
 
+                $(".uploadResult ").on("click", "li button", function(e){
+                    console.log("delete file");
+                    var targetFile = $(this).data("file");
+                    var targetLi = $(this).closest("li");
 
+                    $.ajax({
+                        url: '/removeFile',
+                        data: {fileName: targetFile},
+                        dataType: 'text',
+                        type: 'POST',
+                        success: function(result){
+<!--                            alert(result);-->
+                            targetLi.remove();
+                        }
+                    });
+
+<!--                    $(".remove-file").on("change", function() {-->
+<!--                        var formData = new FormData();-->
+<!--                        formData = [];-->
+<!--                    }-->
+
+
+                });
 
 
                 $(".custom-file-input").on("change", function() {

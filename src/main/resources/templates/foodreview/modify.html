@@ -3,7 +3,7 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
-    <h1 class="mt-4" style="margin-bottom: 20px;">위험성평  수정</h1>
+    <h1 class="mt-4" style="margin-bottom: 20px;">위험성평가 수정</h1>
 
     <form action="/foodreview/modify" method="post">
 
@@ -12,9 +12,8 @@
       <!-- 위 코드 한줄로 인해 fno가 전달 되지 않아(페이로드 통해 확인) 수정 반영이 되지 않았던 것.-->
 
       <div class="form-group">
-      <label style="margin-bottom: 10px;">연구실 위치</label>
-      <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" style="margin-bottom: 10px;"readonly>
-
+        <label style="margin-bottom: 10px;">연구실 위치</label>
+        <input type="text" class="form-control" name="restaurantName" th:value="${dto.restaurantName}" style="margin-bottom: 10px;"readonly>
       </div>
 
       <div class="text_box form-group">
@@ -24,7 +23,7 @@
       </div>
 
       <div class="form-group">
-        <label for="lang">개선 여부</label>
+        <label for="lang">개선여부</label>
         <select name="possibility" id="lang">
           <option value="none" selected disabled>==선택==</option>
           <option value="O">O</option>
@@ -33,7 +32,7 @@
       </div>
 
 
-    <style>
+      <style>
             .uploadResult {
                 width: 100%;
                 background-color: gray;
@@ -84,24 +83,21 @@
                 font-size:15px;
             }
 
-        </style>
-    <div class="uploadResult">
-      <ul>
-        <li th:each="foodReviewImage: ${dto.imageDTOList}">
-          <img th:if="${foodReviewImage.path != null}"
-               th:src="|/display?fileName=${foodReviewImage.getThumbnailURL()}|">
-        </li>
-      </ul>
-    </div>
+      </style>
+      <div class="uploadResult">
+        <ul>
+          <li th:each="foodReviewImage: ${dto.imageDTOList}">
+            <img th:if="${foodReviewImage.path != null}"
+                 th:src="|/display?fileName=${foodReviewImage.getThumbnailURL()}|">
+          </li>
+        </ul>
+      </div>
 
     </form>
 
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
-
       <button type="button" class="btn btn-success modifyBtn" style="margin-right: 10px;">수정 완료</button>
-
-
 <!--      <button type="button" class="btn btn-warning removeReview">삭제</button>-->
     </div>
 
@@ -112,9 +108,7 @@
         var actionForm = $("form"); // form 태그 객체
 
 <!--        var inputContent = $('input[name="content"]')-->
-
 <!--        var data = {fno:fno, restaurantName:restaurantName, content:inputContent.val()};-->
-
 <!--        console.log(data)-->
 
         $(".modifyBtn").click(function(){
