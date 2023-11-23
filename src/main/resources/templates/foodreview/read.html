@@ -11,6 +11,11 @@
     </div>
 
     <div class="text_box form-group" style="margin-bottom: 30px;">
+      <label style="margin-bottom: 10px;">댓글</label>
+      <input type="text" class="form-control" name="title" th:value="${dto.reviewCnt} + 개"  style="margin-bottom: 10px;" readonly></textarea>
+    </div>
+
+    <div class="text_box form-group" style="margin-bottom: 30px;">
       <label style="margin-bottom: 10px;">신고 내용</label>
       <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 10px;" readonly></textarea>
     </div>
@@ -76,6 +81,10 @@
         </li>
       </ul>
     </div>
+
+    <button type="button" class="btn btn-primary">
+      Review Count <span class="badge badge-light">[[${dto.reviewCnt}]]</span>
+    </button>
 
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>

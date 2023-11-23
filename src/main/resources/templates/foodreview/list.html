@@ -5,7 +5,7 @@
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4" style="margin-bottom: 30px;"> &nbsp&nbsp&nbsp&nbsp&nbsp 유해위험요인 신고. &nbsp&nbsp
+        <h1 class="mt-4" style="margin-bottom: 30px;"> &nbsp&nbsp&nbsp&nbsp&nbsp 유해위험요인 신고 &nbsp&nbsp
             <span>
                 <a th:href="@{/foodreview/register}">
                     <button type="button" class="btn btn-outline-primary">등록</button>
@@ -42,7 +42,7 @@
                 <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
                 <td>
                     <img th:if="${dto.imageDTOList.size() >0 && dto.imageDTOList[0].path != null}"
-                         th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|"><div></div>[[${dto.restaurantName}]]
+                         th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|"><div></div>[[${dto.restaurantName}]]&nbsp&nbsp&#91;댓글:[[${dto.reviewCnt}]]개&#93;
                 </td>
                 <td><pre>[[${dto.content}]]</pre></td>
                 <td>[[${dto.possibility}]]</td>

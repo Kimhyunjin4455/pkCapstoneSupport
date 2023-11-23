@@ -51,7 +51,8 @@ public class FoodReviewServiceImpl implements FoodReviewService{
 
         Function<Object[], FoodReviewDTO> fn = (arr -> entitiesToDTO( // ?1
                 (FoodReview)arr[0],
-                (List<FoodReviewImage>) (Arrays.asList((FoodReviewImage)arr[1])))
+                (List<FoodReviewImage>) (Arrays.asList((FoodReviewImage)arr[1])),
+                (Long)arr[2])
         );
         return new PageResultDTO<>(result, fn);
     }
@@ -66,7 +67,9 @@ public class FoodReviewServiceImpl implements FoodReviewService{
             foodReviewImageList.add(foodReviewImage);
         });
 
-        return entitiesToDTO(foodReview, foodReviewImageList);
+        Long reviewCnt = (Long) result.get(0)[2];
+
+        return entitiesToDTO(foodReview, foodReviewImageList, reviewCnt);
     }
 
 //    @Override

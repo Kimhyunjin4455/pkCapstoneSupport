@@ -23,5 +23,7 @@ public class FoodReviewDTO {
 
     @Builder.Default
     private List<FoodReviewImageDTO> imageDTOList = new ArrayList<>();
+
+    private int reviewCnt;
     private LocalDateTime regDate, modDate;
 }

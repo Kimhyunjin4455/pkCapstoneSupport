@@ -70,7 +70,8 @@ public interface FoodReviewService {
     }
 
     // JPA를 통해서 나오는 엔티티 객체들을 FoodReviewDTO로 변환하는 entitiesToDto()추가
-    default FoodReviewDTO entitiesToDTO(FoodReview foodReview, List<FoodReviewImage> foodReviewImages){
+    default FoodReviewDTO entitiesToDTO(FoodReview foodReview, List<FoodReviewImage> foodReviewImages,
+                                        Long reviewCnt){
         FoodReviewDTO foodReviewDTO = FoodReviewDTO.builder()
                 .fno(foodReview.getFno())
                 .restaurantName(foodReview.getRestaurantName())
@@ -95,6 +96,7 @@ public interface FoodReviewService {
             }).collect(Collectors.toList());
 
             foodReviewDTO.setImageDTOList(foodReviewImageDTOList);
+            foodReviewDTO.setReviewCnt(reviewCnt.intValue());
         }
 // foodReviewImageDTOList가 null인 경우에도 나오게 하기 위해 위 코드로 수정, 이미지 관련 문제 발생 시 아래 내용으로 원복
 //        List<FoodReviewImageDTO> foodReviewImageDTOList = foodReviewImages.stream().map(foodReviewImage -> {
