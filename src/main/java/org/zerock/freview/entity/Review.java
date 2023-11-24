@@ -19,4 +19,7 @@ public class Review extends BaseEntity{
     private FoodReview foodReview;
 
     private String text;
+    public void changeText(String text){
+        this.text = text;
+    }
 }
