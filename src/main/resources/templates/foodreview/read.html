@@ -90,6 +90,8 @@
 
     <div class="list-group reviewList"></div>
 
+
+
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" onClick="location.href='/foodreview/list'" style="margin-right: 10px;">닫기</button>
 
@@ -124,7 +126,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">댓글 작성</h5>
-            <button type = "button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type = "button" class="close replyClose" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -136,6 +138,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            <button type="button" class="btn btn-primary reviewSaveBtn">저장</button>
             <button type="button" class="btn btn-warning modifyBtn">수정</button>
             <button type="button" class="btn btn-danger removeBtn">삭제</button>
           </div>
@@ -156,7 +159,7 @@
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <button type="button" class="btn btn-secondary " data-dismiss="modal">
               닫기
             </button>
           </div>
@@ -172,6 +175,14 @@
 
         // 모달창
         var modal = $('.modal');
+
+        $(".reviewModal .replyClose ").on("click", () => {
+            reviewModal.modal('hide');
+        });
+
+        $(".reviewModal .btn-secondary ").on("click", () => {
+            reviewModal.modal('hide');
+        });
 
         var reviewModal = $(".reviewModal");
         var inputMid = $('input[name="mid]');
@@ -202,6 +213,72 @@
 
           $(".imageModal").modal("show");
         });
+
+        $('.reviewSaveBtn').click(function() {
+                    var data = {fno:fno, text:inputText.val()};
+                    console.log(data);
+
+                    $.ajax({
+                        url: '/reviews/'+fno,
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "text",
+                        success: function(result) {
+                          console.log("result: " + result);
+                          self.location.reload();
+                        }
+                    })
+                    reviewModal.modal('hide');
+        });
+
+        function getFoodReviews() {
+                    function formatTime(str) {
+                      var date = new Date(str);
+
+                      return date.getFullYear() + '/' +
+                        (date.getMonth() + 1) + '/' +
+                        date.getDate() + ' ' +
+                        date.getHours() + ':' +
+                        date.getMinutes();
+                    }
+
+                    $.getJSON("/reviews/" + fno + "/all", function(arr) {
+                      var str = "";
+
+                      $.each(arr, function(idx, review) {
+                        console.log(review);
+                        str += '<div class="card-body" data-reviewnum=' + review.reviewnum +'>';
+                        str += '<p class="card-text">' + formatTime(review.regDate) + '</p>';
+                        str += '</div>';
+                      });
+                      $(".reviewList").html(str);
+                    });
+        }
+
+        getFoodReviews();
+
+        var reviewnum;
+
+        $(".reviewList").on("click", ".card-body", function() {
+                  $(".reviewSaveBtn").hide();
+                  $(".removeBtn, .modifyBtn").show();
+
+                  var targetReview = $(this);
+                  reviewnum = targetReview.data("reviewnum");
+
+                  console.log("reviewnum: " + reviewnum);
+                  inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
+
+
+                  $('.reviewModal').modal('show');
+                });
+
+
+
+
+
+
 
       });
 
