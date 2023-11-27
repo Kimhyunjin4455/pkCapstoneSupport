@@ -20,10 +20,10 @@
       <textarea class="textarea form-control" name="content" th:text="${dto.content}" style="margin-bottom: 10px;" readonly></textarea>
     </div>
 
-    <div class="text_box form-group" style="margin-bottom: 30px;">
-      <label style="margin-bottom: 10px;">개선 여부</label>
-      <input type="text" class="form-control" name="possibility" th:value="${dto.possibility}" style="margin-bottom: 10px;" readonly>
-    </div>
+<!--    <div class="text_box form-group" style="margin-bottom: 30px;">-->
+<!--      <label style="margin-bottom: 10px;">개선 여부</label>-->
+<!--      <input type="text" class="form-control" name="possibility" th:value="${dto.possibility}" style="margin-bottom: 10px;" readonly>-->
+<!--    </div>-->
 
 
     <style>
@@ -46,7 +46,7 @@
                 margin-left: 2em;
             }
             .uploadResult ul li img {
-                width: 100px;
+                width: 150px;
             }
 
             .modalClose{
@@ -81,6 +81,31 @@
         </li>
       </ul>
     </div>
+
+    <div class="text_box form-group" style="margin-bottom: 30px;">
+      <label style="margin-bottom: 10px;">위험성 평가 결과 파일</label>
+      <input type="text" class="form-control" style="margin-bottom: 10px;" th:value="------------" readonly>
+    </div>
+
+    <div class="text_box form-group" style="margin-bottom: 30px;">
+      <label style="margin-bottom: 10px;">개선 권고사항</label>
+      <textarea class="textarea form-control"style="margin-bottom: 10px;" readonly>내부 충전부 보호 커버를 설치하고, 네임택 부착 바람&#13;&#10;외부 커버를 열리지 않게 조치하고 관리 담당자 지정 바람
+        &#13;&#10;접지 처리하여 인체 감전사고 등을 예방 바람(접지형 플러그 사용, 접지된 콘센트에 접속, 접지선 연결 등)
+      </textarea>
+    </div>
+
+    <div class="text_box form-group" style="margin-bottom: 30px;">
+      <label style="margin-bottom: 10px;">개선조치 내용</label>
+      <textarea class="textarea form-control"style="margin-bottom: 10px;" readonly>내부 커버를 설치하고 네임택을 부착함.&#13;&#10;외부 커버 잠금조치도 실시함.&#13;&#10;접지 단자를 연결하여 접지함.</textarea>
+    </div>
+
+    <label style="margin-bottom: 10px;">개선조치 이미지 첨부</label>
+    <div class="uploadResult" style="margin-bottom: 20px; text-align:center;   padding: 10px;">
+      <img src="/../img/sample1.jpg" alt="" width="150px">
+    </div>
+
+
+
 
     <button type="button" class="btn btn-primary">
       댓글 <span class="badge bg-dark">[[${dto.reviewCnt}]]</span>
@@ -175,6 +200,7 @@
 
         // 모달창
         var modal = $('.modal');
+        var fno = [[${dto.fno}]]
 
         $(".reviewModal .replyClose ").on("click", () => {
             reviewModal.modal('hide');
@@ -185,8 +211,8 @@
         });
 
         var reviewModal = $(".reviewModal");
-        var inputMid = $('input[name="mid]');
-        var inputText = $('input[name="mid]');
+        var inputMid = $('input[name="mid"]');
+        var inputText = $('input[name="text"]');
 
         $(".addReviewBtn").click(function() {
           //$(".reviewModal").modal("show");
@@ -249,6 +275,7 @@
                       $.each(arr, function(idx, review) {
                         console.log(review);
                         str += '<div class="card-body" data-reviewnum=' + review.reviewnum +'>';
+                        str += '<h5 class="card-title">'+ review.text + ' <span>' + '</span><h5>';
                         str += '<p class="card-text">' + formatTime(review.regDate) + '</p>';
                         str += '</div>';
                       });

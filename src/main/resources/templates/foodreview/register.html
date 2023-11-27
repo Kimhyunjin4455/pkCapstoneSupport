@@ -13,7 +13,7 @@
             </div>
             <div class="text_box form-group">
                 <label for="exampleFormControlTextarea1" class="form-label">신고 내용</label>
-                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="아래 양식에 맞추어 작성 부탁드립니다.&#13;&#10;가게/위험물명 :&#13;&#10;위험내용:" style="margin-bottom: 10px;">가게/위험물명 : &#13;&#10;위험내용 : </textarea>
+                <textarea class="textarea form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="아래 양식에 맞추어 작성 부탁드립니다.&#13;&#10;가게/위험물명 :&#13;&#10;위험내용:" style="margin-bottom: 10px;">기계/위험물명 : &#13;&#10;위험내용 : </textarea>
                 <div class="count"><span>0</span>/200</div>
             </div>
             <div class="form-group">
@@ -123,7 +123,7 @@
                     $(uploadResultArr).each(function(i, obj) {
                         str += "<li data-name='" + obj.fileName + "' data-path='" + obj.folderPath + "' data-uuid='" + obj.uuid + "'>";
                         str += "<div>";
-                        str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
+                        str += "<button type='button' data-file=\'" + obj.thumbnailURL + "\' ";
                         str += "class='btn-warning btn-sm'>X</button><br>";
                         str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
                         str += "</div>";
