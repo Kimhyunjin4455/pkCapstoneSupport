@@ -8,3 +8,9 @@
 그 신고내용에 대해 개선할 사항/ 개선된 사항을 볼 수 있는 조회 페이지가 존재합니다
 
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-10-14 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/244383a9-0c9b-4148-a7a5-6f8b801ec444">
+<img width="500" alt="KakaoTalk_Photo_2024-01-17-01-10-14 002" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/d42d1bad-811a-4992-b4f3-7bddcd15c894">
+<img width="500" alt="KakaoTalk_Photo_2024-01-17-01-10-24" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/44bc7c3c-5834-47b3-b635-eddebeb92eea">
+<img width="500" alt="KakaoTalk_Photo_2024-01-17-01-11-24 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/9894f302-b888-4294-aba7-d0cef13c9c9b">
+<img width="500" alt="KakaoTalk_Photo_2024-01-17-01-15-33 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/2e4f6adf-7f9d-4385-a0f3-f772f970de86">
+<img width="500" alt="KakaoTalk_Photo_2024-01-17-01-15-33 002" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/1e45944a-097a-46a5-865f-4d92907c0c9c">
+
