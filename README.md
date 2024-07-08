@@ -1,5 +1,5 @@
 
-부경대학교 친구의 캡스톤 디자인의 도움을 주고자 실행한 프로젝트 입니다.
+부경대학교 지인의 캡스톤 디자인의 도움을 주고자 실행한 프로젝트 입니다.
 (스프링부트, mariaDB를 이용하였습니다.)
 
 자율 안전신고 페이지이며
@@ -13,4 +13,6 @@
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-11-24 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/9894f302-b888-4294-aba7-d0cef13c9c9b">
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-15-33 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/2e4f6adf-7f9d-4385-a0f3-f772f970de86">
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-15-33 002" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/1e45944a-097a-46a5-865f-4d92907c0c9c">
+
+- 
 
