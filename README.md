@@ -21,14 +21,14 @@
 - HTTP Method: GET
 - Description: 페이지 템플릿과 사이드바를 조회합니다.
   
-#### 1.신고서 목록 페이지 이동
+#### 1. 신고서 목록 페이지 이동
 - Endpoint: /foodreview, /foodreview/
 - HTTP Method: GET
 - Response:
   - Redirect: /foodreview/list
 - Description: 기본 URL 접근 시 신고서 목록 페이지로 리디렉션합니다.
 
-#### 2.신고서 목록 조회
+#### 2. 신고서 목록 조회
 - Endpoint: /foodreview/list
 - HTTP Method: GET
 - Request Params:
@@ -39,14 +39,14 @@
   - Model Attributes: result (신고서 목록 결과)
 - Description: 신고서 목록을 조회하여 페이지에 표시합니다.
 
-#### 3.신고서 등록 페이지로 이동
+#### 3. 신고서 등록 페이지로 이동
 - Endpoint: /foodreview/register
 - HTTP Method: GET
 - Response:
   - View: foodreview/register
 - Description: 신고서 등록 페이지로 이동합니다.
 
-#### 4.보고서 등록
+#### 4. 보고서 등록
 - Endpoint: /foodreview/register
 - HTTP Method: POST
 - Request Body:
@@ -56,7 +56,7 @@
   - Flash Attribute: msg (등록된 신고서의 ID)
 - Description: 새로운 신고서를 등록하고 목록 페이지로 리디렉션합니다.
 
-#### 5.신고서 읽기 및 수정 페이지 이동
+#### 5. 신고서 읽기 및 수정 페이지 이동
 - Endpoint: /foodreview/read, /foodreview/modify
 - HTTP Method: GET
 - Request Params:
@@ -66,7 +66,7 @@
   - Model Attributes: dto (신고서 데이터), requestDTO (페이지 요청 정보)
 - Description: 특정 신고서를 조회하거나 수정 페이지로 이동합니다.
 
-#### 6.신고서 수정
+#### 6. 신고서 수정
 - Endpoint: /foodreview/modify
 - HTTP Method: POST
 - Request Body:
@@ -89,6 +89,42 @@
 
 ### Endpoints
 
+#### 1. 파일 업로드
+- Endpoint: /uploadAjax
+- HTTP Method: POST
+- Request Body:
+  - MultipartFile[]: 업로드할 파일들
+- Response:
+  - 200 OK: 파일이 성공적으로 업로드됨
+  - 403 FORBIDDEN: 업로드된 파일이 이미지 파일이 아님
+- Body: List<UploadResultDTO>
+  - fileName (String): 파일 이름
+  - uuid (String): 파일 UUID
+  - folderPath (String): 파일이 저장된 폴더 경로
+- Description: 이미지 파일을 업로드하고 섬네일을 생성합니다.
+
+#### 2. 파일 표시
+- Endpoint: /display
+- HTTP Method: GET
+- Request Params:
+  - fileName (String): 파일 이름
+  - size (String, optional): 1이면 원본 파일을 표시, 아니면 섬네일을 표시
+- Response:
+  - 200 OK: 파일이 성공적으로 조회됨
+  - 500 INTERNAL SERVER ERROR: 파일 조회 중 오류 발생
+  - Body: 파일의 바이트 배열
+- Description: 지정된 파일을 조회합니다.
+
+#### 3. 파일 삭제
+- Endpoint: /removeFile
+- HTTP Method: POST
+- Request Params:
+  - fileName (String): 삭제할 파일 이름
+- Response:
+  - 200 OK: 파일이 성공적으로 삭제됨
+  - 500 INTERNAL SERVER ERROR: 파일 삭제 중 오류 발생
+  - Body: Boolean (파일 삭제 성공 여부)
+- Description: 지정된 파일과 해당 섬네일을 삭제합니다.
 
 <br/><br/>
 
