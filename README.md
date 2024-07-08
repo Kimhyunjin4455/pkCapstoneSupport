@@ -9,6 +9,8 @@
 
 (코드 작성에 대해서는 변경 전 주제(식당 관련)의 코드를 사용하여 혼동을 야기할 수 있습니다.)
 
+## 메인 컨트롤러
+
 ### Base Url
 - /foodreview
 
@@ -78,6 +80,16 @@
   - page (int): 페이지 번호
 - Description: 특정 리뷰를 수정하고 읽기 페이지로 리디렉션합니다.
 
+<br/>
+
+## 파일 첨부 컨트롤러
+
+### Base Url
+- /upload
+
+### Endpoints
+
+
 <br/><br/>
 
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-10-14 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/244383a9-0c9b-4148-a7a5-6f8b801ec444">
@@ -87,5 +99,5 @@
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-15-33 001" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/2e4f6adf-7f9d-4385-a0f3-f772f970de86">
 <img width="500" alt="KakaoTalk_Photo_2024-01-17-01-15-33 002" src="https://github.com/Kimhyunjin4455/pkCapstoneSupport/assets/80228088/1e45944a-097a-46a5-865f-4d92907c0c9c">
 
-- 
+
 
